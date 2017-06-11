@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
   # Routes for the Product_recommendation resource:
   # CREATE
 
@@ -22,8 +21,6 @@ Rails.application.routes.draw do
 
   devise_for :budtenders
   devise_for :users
-=======
->>>>>>> parent of c2debf0... post-devise
   # Routes for the Comment resource:
   # CREATE
   get "/comments/new", :controller => "comments", :action => "new"
@@ -75,5 +72,19 @@ Rails.application.routes.draw do
   get "/delete_like/:id", :controller => "likes", :action => "destroy"
   #------------------------------
 
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  class ApplicationController < ActionController::Base
+    before_action :configure_permitted_parameters, if: :devise_controller?
+
+    protected
+
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, :keys => [:username, :avatar_url])
+
+      devise_parameter_sanitizer.permit(:account_update, :keys => [:username, :avatar_url])
+    end
+  end
+
+  root to: "home#index"
 end
