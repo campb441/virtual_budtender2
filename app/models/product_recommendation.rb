@@ -1,2 +1,0 @@
-class ProductRecommendation < ApplicationRecord
-end
