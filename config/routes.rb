@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   # Routes for the Product_recommendation resource:
   # CREATE
 
-  get "/", :controller => "home", :action =>"index"
-  
+  get "/signin", :controller => "sessions", :action =>"new"
+
   get "/product_recommendations/new", :controller => "product_recommendations", :action => "new"
   post "/create_product_recommendation", :controller => "product_recommendations", :action => "create"
 
