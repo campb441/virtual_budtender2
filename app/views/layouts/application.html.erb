@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Virtual Budtender</title>
+<html>
+  <head>
+    <title>VirtualBudtender2</title>
+    <%= csrf_meta_tags %>
 
+<<<<<<< HEAD
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.5/paper/bootstrap.min.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
@@ -69,8 +70,13 @@
         <%= alert %>
       </div>
     <% end %>
+=======
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+>>>>>>> parent of c2debf0... post-devise
 
+  <body>
     <%= yield %>
-  </div>
-</body>
+  </body>
 </html>
