@@ -1,4 +1,26 @@
 Rails.application.routes.draw do
+  # Routes for the Product_recommendation resource:
+  # CREATE
+
+  get "/", :controller => "home", :action =>"index"
+  
+  get "/product_recommendations/new", :controller => "product_recommendations", :action => "new"
+  post "/create_product_recommendation", :controller => "product_recommendations", :action => "create"
+
+  # READ
+  get "/product_recommendations", :controller => "product_recommendations", :action => "index"
+  get "/product_recommendations/:id", :controller => "product_recommendations", :action => "show"
+
+  # UPDATE
+  get "/product_recommendations/:id/edit", :controller => "product_recommendations", :action => "edit"
+  post "/update_product_recommendation/:id", :controller => "product_recommendations", :action => "update"
+
+  # DELETE
+  get "/delete_product_recommendation/:id", :controller => "product_recommendations", :action => "destroy"
+  #------------------------------
+
+  devise_for :budtenders
+  devise_for :users
   # Routes for the Comment resource:
   # CREATE
   get "/comments/new", :controller => "comments", :action => "new"
@@ -50,5 +72,19 @@ Rails.application.routes.draw do
   get "/delete_like/:id", :controller => "likes", :action => "destroy"
   #------------------------------
 
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  class ApplicationController < ActionController::Base
+    before_action :configure_permitted_parameters, if: :devise_controller?
+
+    protected
+
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, :keys => [:username, :avatar_url])
+
+      devise_parameter_sanitizer.permit(:account_update, :keys => [:username, :avatar_url])
+    end
+  end
+
+  root to: "home#index"
 end
